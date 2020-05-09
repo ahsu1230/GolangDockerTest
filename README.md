@@ -53,9 +53,9 @@ Stop the container using:
 docker stop testdocker
 ```
 
-### Running and Pushing to Docker
+### Fetching Docker instance from DockerHub
 
-When builds are on DockerHub, you can run the latest using the following command. In addition, anyone with docker installed can also run this image as well.
+Setup Automated Builds by connecting Docker to a Github repository. When new commits are merged, automatic Docker builds will be triggered. Once builds are successfully triggered on DockerHub, anyone with docker installed can fetch and run this image as well.
 
 ```unix
 docker run ahsu1230/golang_docker_test
