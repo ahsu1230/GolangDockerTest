@@ -53,7 +53,16 @@ Stop the container using:
 docker stop testdocker
 ```
 
+### Running and Pushing to Docker
+
+When builds are on DockerHub, you can run the latest using the following command. In addition, anyone with docker installed can also run this image as well.
+
+```unix
+docker run ahsu1230/golang_docker_test
+```
+
 ## Resources
 
 - Go doc on deploying to Docker <https://blog.golang.org/docker>
 - <https://stackoverflow.com/questions/47837149/build-docker-with-go-app-cannot-find-package>
+- Setup Automated Builds on Docker <https://docs.docker.com/docker-hub/builds/>
