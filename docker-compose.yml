@@ -20,4 +20,9 @@ services:
       - "db:database"
     environment:
       WAIT_HOSTS: db:3306
+      DB_HOST: database # these db_ env variables should match the env variables in mysql
+      DB_PORT: 3306
+      DB_USER: user
+      DB_PASSWORD: password
+      DB_DEFAULT: test_docker_db
   

@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"strconv"
 
 	"github.com/ahsu1230/GolangDockerTest/src/database"
 	"github.com/ahsu1230/GolangDockerTest/src/math"
-	"github.com/ahsu1230/GolangDockerTest/src/parsers"
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -24,12 +25,11 @@ func main() {
 	fmt.Println("Hello!")
 	fmt.Println("Math", math.Add(3, 5))
 
-	fmt.Println("Parsing configurations...")
-	config := parsers.ParserYaml("configurations.yml")
-	dbc := config.Database
+	fmt.Println("Retrieving environment variables...")
 
 	fmt.Println("Connecting to database...")
-	db, err := database.OpenMySql(dbc.Host, dbc.Port, dbc.Username, dbc.Password, dbc.DbName)
+	port, _ := strconv.Atoi(os.Getenv("DB_PORT"))
+	db, err := database.OpenMySql(os.Getenv("DB_HOST"), port, os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"), os.Getenv("DB_DEFAULT"))
 	if err != nil || db == nil {
 		panic(err)
 	}

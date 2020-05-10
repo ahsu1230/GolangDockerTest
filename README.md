@@ -70,9 +70,17 @@ docker-compose build
 docker-compose up
 ```
 
-The webserver should be started at port 6000, which maps to the container's port 8080. The database is now available at port 3307 which maps to another container's port 3306. Use curl to access the webserver living on the container `curl http://localhost:6000`.
+The webserver should be started on the hosts' (your computer's) port 6000, which maps to the container's port 8080. The database is also available at hosts' port 3307 which maps to another container's port 3306. Use curl to access the webserver living on the container `curl http://localhost:6000`. 
 
 Once you are ready to clean up the docker containers, run `docker-compose rm`.
+
+## Relationships between Docker-Compose services
+
+If one server depends on another, follow this guide: <https://dev.to/hugodias/wait-for-mongodb-to-start-on-docker-3h8b>.
+
+- You can have one server start before another using `depends_on`. 
+- If one server needs to be "healthy" before another (like a database before a webserver), use `docker-compose-wait`. This is very useful if a service is "ready" but takes a while initializing before it can accept requests.
+- Use `links` for containers to expose one another to each other. Host has access to all containers, but containers cannot access each other.
 
 ## Resources
 
