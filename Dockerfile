@@ -12,8 +12,12 @@ RUN go get github.com/ahsu1230/GolangDockerTest
 # Build the command inside the container by installing the binary.
 RUN go install .
 
+## Install and launch wait tool and then launch application
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
+RUN chmod +x /wait
+
 # Run the command by default when the container starts.
-ENTRYPOINT /go/bin/GolangDockerTest
+ENTRYPOINT /wait && /go/bin/GolangDockerTest
 
 # Document that the container service listens on port 8080.
 EXPOSE 8080

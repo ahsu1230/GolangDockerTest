@@ -1,10 +1,7 @@
 package main
 
 import (
-	"context"
 	"fmt"
-	"log"
-	"time"
 
 	"github.com/ahsu1230/GolangDockerTest/src/database"
 	"github.com/ahsu1230/GolangDockerTest/src/math"
@@ -39,28 +36,6 @@ func main() {
 	defer db.Close()
 
 	fmt.Println("Database connected!")
-
-	dbIsHealthy := false
-	for i := 0; i < 10; i++ {
-		fmt.Println("Waiting to ping...")
-		ctx, stop := context.WithCancel(context.Background())
-		defer stop()
-
-		fmt.Println("Pinging...")
-		err := database.Ping(db, ctx)
-		if err != nil {
-			fmt.Println("Database is not ready yet. Sleeping...", i)
-			time.Sleep(time.Second * 5)
-		} else {
-			fmt.Println("Database is healthy!")
-			dbIsHealthy = true
-			break
-		}
-	}
-
-	if !dbIsHealthy {
-		log.Fatal("Database is not healthy. Abort running webserver.")
-	}
 
 	engine := initGin()
 	engine.Run()

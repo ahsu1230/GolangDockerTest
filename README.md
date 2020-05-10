@@ -80,3 +80,4 @@ Once you are ready to clean up the docker containers, run `docker-compose rm`.
 - <https://stackoverflow.com/questions/47837149/build-docker-with-go-app-cannot-find-package>
 - Setup Automated Builds on Docker <https://docs.docker.com/docker-hub/builds/>
 - Using Docker Compose Up <https://www.youtube.com/watch?v=Qw9zlE3t8Ko>
+- Waiting on services <https://dev.to/hugodias/wait-for-mongodb-to-start-on-docker-3h8b>
