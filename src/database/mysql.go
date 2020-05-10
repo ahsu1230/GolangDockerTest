@@ -4,28 +4,21 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
-	"log"
 	"time"
 )
 
-func createMysqlConnectionInfo(host string, port int, user string, pass string, dbName string) string {
-	info := fmt.Sprintf("%s:%s@(%s:%d)/%s", user, pass, host, port, dbName)
-	info += "?charset=utf8&parseTime=True&loc=UTC"
-	return info
-}
-
-func OpenMySql() (*sql.DB, error) {
-	connection := createMysqlConnectionInfo("database", 3306, "user", "password", "test_docker_db")
+func OpenMySql(host string, port int, user string, pass string, dbName string) (*sql.DB, error) {
+	connection := fmt.Sprintf("%s:%s@(%s:%d)/%s", user, pass, host, port, dbName)
+	fmt.Println("Opening connection to", connection)
 	return sql.Open("mysql", connection)
 }
 
-func Ping(db *sql.DB, ctx context.Context) {
+func Ping(db *sql.DB, ctx context.Context) error {
 	ctx, cancel := context.WithTimeout(ctx, 1*time.Second)
 	defer cancel()
 
 	if err := db.PingContext(ctx); err != nil {
-		log.Fatalf("Unable to connect to database: %v", err)
-	} else {
-		log.Println("Database is healthy!")
+		return err
 	}
+	return nil
 }

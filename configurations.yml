@@ -1,0 +1,8 @@
+app:
+  build: "development"
+database:
+  host: "database"
+  port: 3306
+  user: "user"
+  pass: "password"
+  dbName: "test_docker_db"

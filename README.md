@@ -72,6 +72,8 @@ docker-compose up
 
 The webserver should be started at port 6000, which maps to the container's port 8080. The database is now available at port 3307 which maps to another container's port 3306. Use curl to access the webserver living on the container `curl http://localhost:6000`.
 
+Once you are ready to clean up the docker containers, run `docker-compose rm`.
+
 ## Resources
 
 - Go doc on deploying to Docker <https://blog.golang.org/docker>

@@ -18,5 +18,4 @@ services:
       - "db"
     links:
       - "db:database"
-    restart: on-failure
   
