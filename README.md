@@ -61,8 +61,20 @@ Setup Automated Builds by connecting Docker to a Github repository. When new com
 docker run ahsu1230/golang_docker_test
 ```
 
+## Using Docker Compose
+
+If you want to create multiple services, use `docker-compose` to spin them all up together. Every service should have its own `Dockerfile`, which `docker-compose` can use to spin up that resource. In addition, `docker-compose` can also help you spin up basic images like `MySql`. To run `docker-compose`, use this command in the same directory as the `docker-compose.yml`.
+
+```unix
+docker-compose build
+docker-compose up
+```
+
+The webserver should be started at port 6000, which maps to the container's port 8080. The database is now available at port 3307 which maps to another container's port 3306. Use curl to access the webserver living on the container `curl http://localhost:6000`.
+
 ## Resources
 
 - Go doc on deploying to Docker <https://blog.golang.org/docker>
 - <https://stackoverflow.com/questions/47837149/build-docker-with-go-app-cannot-find-package>
 - Setup Automated Builds on Docker <https://docs.docker.com/docker-hub/builds/>
+- Using Docker Compose Up <https://www.youtube.com/watch?v=Qw9zlE3t8Ko>
