@@ -15,7 +15,7 @@ func createMysqlConnectionInfo(host string, port int, user string, pass string, 
 }
 
 func OpenMySql() (*sql.DB, error) {
-	connection := createMysqlConnectionInfo("127.0.0.1", 3306, "user", "password", "test_docker_db")
+	connection := createMysqlConnectionInfo("database", 3306, "user", "password", "test_docker_db")
 	return sql.Open("mysql", connection)
 }
 
@@ -24,6 +24,8 @@ func Ping(db *sql.DB, ctx context.Context) {
 	defer cancel()
 
 	if err := db.PingContext(ctx); err != nil {
-		log.Fatalf("unable to connect to database: %v", err)
+		log.Fatalf("Unable to connect to database: %v", err)
+	} else {
+		log.Println("Database is healthy!")
 	}
 }
