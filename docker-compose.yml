@@ -10,8 +10,8 @@ services:
     - MYSQL_PASSWORD=password
     - MYSQL_DATABASE=test_docker_db
 
-  web:
-    build: .
+  web-server:
+    build: ./web-server
     ports:
       - "6000:8080" # host port 6000 links to container port 8080
     depends_on:
