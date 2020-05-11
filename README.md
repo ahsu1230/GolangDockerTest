@@ -82,6 +82,16 @@ If one server depends on another, follow this guide: <https://dev.to/hugodias/wa
 - If one server needs to be "healthy" before another (like a database before a webserver), use `docker-compose-wait`. This is very useful if a service is "ready" but takes a while initializing before it can accept requests.
 - Use `links` for containers to expose one another to each other. Host has access to all containers, but containers cannot access each other.
 
+## Shell into Docker Containers
+
+Let's say we want to see what's going on in our Docker Containers. For example, let's say I want to check the database status of one of my containers. I could simple use:
+
+```unix
+docker-compose exec db bash
+```
+
+This will open service `db` in a bash CLI. Because mysql is installed as a base, we can then use `mysql` commands once inside the container.
+
 ## Resources
 
 - Go doc on deploying to Docker <https://blog.golang.org/docker>
